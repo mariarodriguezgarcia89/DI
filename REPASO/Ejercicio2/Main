@@ -1,0 +1,30 @@
+import sys
+from PySide6.QtGui import (QBrush, QColor, QConicalGradient,)
+from PySide6.QtWidgets import QMainWindow, QApplication, QPushButton
+from ejercicio2 import Ui_MainWindow
+
+class Ventana (QMainWindow, Ui_MainWindow):
+
+    def __init__(self):
+        super().__init__()
+        self.setupUi(self)
+
+        self.btnEnviar.clicked.connect(self.on_enviar)
+
+    def on_enviar(self):
+        nombre = self.lineNombre.text().strip()
+        rol = self.comboRol.currentText().strip()
+        check = self.checkNormas.isChecked()
+
+        if not nombre or not check :
+            print("Faltan datos")
+        else:
+            print(f"Nombre ingresado: {nombre}")
+            print(f"Rol: {rol}")
+            print("Acepta: Sí")
+
+if __name__ == "__main__":
+    app = QApplication(sys.argv)
+    w = Ventana()
+    w.show()
+    sys.exit(app.exec())  # en PySide6 es .exec(), no .exec_()
