@@ -1,0 +1,46 @@
+import sys
+
+from PySide6.QtGui import (QBrush, QColor, QConicalGradient,)
+from PySide6.QtCore import QTimer
+from PySide6.QtWidgets import QMainWindow, QApplication, QPushButton
+from ejercicio3 import Ui_MainWindow
+
+class Ventana (QMainWindow, Ui_MainWindow):
+    def __init__(self):
+        super().__init__()
+        self.setupUi(self)
+
+        self.btnIniciar.clicked.connect(self.iniciar_subida)
+
+        # Crear el timer
+        self.timer = QTimer()
+        self.timer.timeout.connect(self.aumentar_barra)
+
+        # Conectar el doble clic a una función
+        self.listaTareas.itemDoubleClicked.connect(self.on_doble_clic)
+
+    def on_doble_clic(self, item):
+        """Se ejecuta al hacer doble clic en una tarea."""
+        texto = item.text()
+        print(f"Has hecho doble clic en {texto}")
+
+    def iniciar_subida(self):
+        """Se ejecuta al pulsar el botón Iniciar"""
+        self.progreBar.setValue(0)  # Reinicia la barra
+        self.timer.start(100)  # Inicia el temporizador (cada 100 ms ejecutará aumentar_barra)
+
+    def aumentar_barra(self):
+        """Se ejecuta automáticamente cada 100 ms mientras el timer esté activo"""
+        valor_actual = self.progreBar.value()
+
+        if valor_actual < 100:
+            self.progreBar.setValue(valor_actual + 1)  # Sube 1 cada 100 ms
+        else:
+            self.timer.stop()  # Detiene el temporizador al llegar al 100%
+
+
+if __name__ == "__main__":
+    app = QApplication(sys.argv)
+    w = Ventana()
+    w.show()
+    sys.exit(app.exec())  # en PySide6 es .exec(), no .exec_()
