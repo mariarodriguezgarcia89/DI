@@ -1,0 +1,23 @@
+import sys
+from PySide6.QtCore import QTimer, Qt
+from PySide6.QtWidgets import QApplication, QMainWindow, QFileDialog, QPushButton, QVBoxLayout
+from ejercicio1 import Ui_MainWindow
+
+class Ventana(QMainWindow, Ui_MainWindow):
+
+    def __init__(self):
+        super().__init__()
+        self.setupUi(self)
+
+        # Solo asegurar que el texto sea visible
+        self.lblTexto.setAlignment(Qt.AlignCenter)
+        layout = QVBoxLayout(self.centralwidget)
+        layout.addWidget(self.lblTexto, alignment=Qt.AlignCenter)
+        print("Arrancado")
+        
+if __name__ == "__main__":
+    app = QApplication(sys.argv)
+    w = Ventana()
+    w.show()
+    sys.exit(app.exec())  # en PySide6 es .exec(), no .exec_()
+        
