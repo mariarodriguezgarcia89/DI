@@ -1,0 +1,6 @@
+<RCC>
+  <qresource prefix="/icons">
+    <file>assests/logo.png</file>
+    <file>assests/play.png</file>
+  </qresource>
+</RCC>
