@@ -1,0 +1,69 @@
+import sys
+from PySide6.QtWidgets import QMessageBox, QApplication, QMainWindow, QLineEdit, QListWidget, QVBoxLayout, QWidget, QListWidgetItem
+from PySide6.QtCore import Qt
+from TechMarket_Dashboard import Ui_MainWindow
+from productoconicono import ProductoConIcono
+
+
+class Dashboard(QMainWindow):
+    def __init__(self):
+        super().__init__()
+        self.ui = Ui_MainWindow()
+        self.ui.setupUi(self)
+        self.setWindowTitle("TECH MARKET DASHBOARD")
+
+        # --- Lista de productos ---
+        self.productos = [
+            {"nombre": "Portátil ZenAir", "precio": 799, "icono": "icons/laptop.png"},
+            {"nombre": "Ratón Ergonomic", "precio": 25, "icono": "icons/mouse.png"},
+            {"nombre": "Teclado Gamer RGB", "precio": 99, "icono": "icons/keyboard.png"},
+            {"nombre": "Monitor HD 24\"", "precio": 129, "icono": "icons/monitor.png"},
+            {"nombre": "Auriculares Inalámbricos", "precio": 39, "icono": "icons/auriculares.png"},
+        ]
+
+        statusbar = self.statusBar()
+        statusbar.showMessage("LISTO")
+
+        self.populate_products()
+
+        # --- Conectar buscador ---
+        self.ui.lineBuscador.textChanged.connect(self.filter_products)
+
+        # --- Conectar botones de la toolbar ---
+        self.ui.actionMostrar_Estad_sticas.triggered.connect(self.show_statistics)
+
+
+    def populate_products(self):
+        self.ui.listWidget.clear()
+        for p in self.productos:
+                item = QListWidgetItem()
+                widget = ProductoConIcono(p["nombre"], p["precio"], p["icono"])
+                item.setSizeHint(widget.sizeHint())
+                self.ui.listWidget.addItem(item)
+                self.ui.listWidget.setItemWidget(item, widget)
+
+    def filter_products(self, text):
+        """Filtrar productos por nombre"""
+        text_lower = text.lower()
+        for i in range(self.ui.listWidget.count()):
+            item = self.ui.listWidget.item(i)
+            widget = self.ui.listWidget.itemWidget(item)
+            nombre_producto = widget.layout().itemAt(1).widget().text()
+            visible = text_lower in nombre_producto.lower() or not text_lower
+            item.setHidden(not visible)
+
+    def show_statistics(self):
+        """Mostrar un QMessageBox con estadísticas"""
+        total = len(self.productos)
+        visibles = sum(1 for i in range(self.ui.listWidget.count())
+                       if not self.ui.listWidget.item(i).isHidden())
+        QMessageBox.information(self, "Estadísticas",
+                                f"Total de productos: {total}\n"
+                                f"Productos visibles: {visibles}")
+
+
+if __name__ == "__main__":
+    app = QApplication(sys.argv)
+    window = Dashboard()
+    window.show()
+    sys.exit(app.exec())
