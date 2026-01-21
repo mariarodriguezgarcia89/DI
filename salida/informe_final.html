@@ -1,0 +1,115 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">  
+    <title>Informe de Ventas - Grupo DAM</title>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #34495e;
+            --accent: #3498db;
+            --bg: #f4f7f6;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg);
+            color: var(--primary);
+            margin: 0;
+            padding: 40px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 900px;
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        header {
+            border-bottom: 3px solid var(--accent);
+            margin-bottom: 30px;
+            padding-bottom: 10px;
+        }
+
+        h1 {
+            margin: 0;
+            color: var(--primary);
+            font-size: 2.2em;
+        }
+
+        .description {
+            color: #666;
+            line-height: 1.6;
+            font-size: 1.1em;
+        }
+
+        .grafico {
+            margin: 40px 0;
+            padding: 20px;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            text-align: center;
+            transition: transform 0.2s;
+        }
+
+        .grafico:hover {
+            transform: scale(1.01);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        h2 {
+            color: var(--secondary);
+            font-size: 1.4em;
+            margin-bottom: 20px;
+            text-align: left;
+            border-left: 5px solid var(--accent);
+            padding-left: 15px;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+        }
+
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            font-size: 0.9em;
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Informe de Ventas - Grupo DAM</h1>
+            <p class="description">Análisis visual del rendimiento comercial y evolución mensual de ingresos.</p>
+        </header>
+
+        <section class="grafico">
+            <h2>Evolución de Unidades Vendidas por Mes</h2>
+            <img src="../grafico_lineas_unidades.png" alt="Evolución mensual">
+        </section>
+
+        <section class="grafico">
+            <h2>Importe Total por Comercial</h2>
+            <img src="../grafico_barras_importe.png" alt="Ranking por comercial">
+        </section>
+
+        <section class="grafico">
+            <h2>Reparto de Unidades por Comercial</h2>
+            <img src="../grafico_sector_unidades.png" alt="Distribución de ventas">
+        </section>
+
+        <footer>
+            Generado automáticamente por el Sistema de Análisis de Datos - 2024
+        </footer>
+    </div>
+</body> 
+</html>
