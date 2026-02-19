@@ -1,0 +1,10 @@
+MANIFEST.in
+setup.py
+pypi_maria/__init__.py
+pypi_maria/hola_mundo.py
+pypi_maria.egg-info/PKG-INFO
+pypi_maria.egg-info/SOURCES.txt
+pypi_maria.egg-info/dependency_links.txt
+pypi_maria.egg-info/entry_points.txt
+pypi_maria.egg-info/requires.txt
+pypi_maria.egg-info/top_level.txt

@@ -1,0 +1,4 @@
+site_name: Documentacion de PYPI
+nav:
+    - Home: index.md
+    - Sobre el proyecto: about.md

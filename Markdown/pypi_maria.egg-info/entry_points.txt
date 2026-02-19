@@ -1,0 +1,2 @@
+[console_scripts]
+pypi_maria = pypi_maria.hola_mundo:main
